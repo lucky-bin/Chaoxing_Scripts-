@@ -1086,3 +1086,4 @@ function filterStyle(dom, that) {
     return $dom.find('img[src]').replaceWith(function() {
         return $('<p></p>').text('<img src="' + $(this).attr('src') + '">');
     }).end().text().trim();
+}
