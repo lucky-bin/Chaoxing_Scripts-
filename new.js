@@ -299,11 +299,12 @@ function hookVideo() {
     ).dom.title = "下载视频";
     player.on("loadstart", function () {
         setting.tip && this.play().catch(Ext.emptyFn);
-        this.playbackRate(
+    });
+
+    player.one(["loadedmetadata", "firstplay"], function () {
+	this.playbackRate(
             setting.rate > 16 || setting.rate < 0.0625 ? 1 : setting.rate
         );
-    });
-    player.one(["loadedmetadata", "firstplay"], function () {
         setting.two = setting.rate === "0" && setting.two < 1;
         setting.two &&
         config.plugins.seekBarControl.sendLog(
